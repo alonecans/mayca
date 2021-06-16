@@ -1364,17 +1364,7 @@ function addMetadata(packname, author) {
       }
       }
 
-             //kolor
-			colors = ['red','white','black','blue','yellow','green']
-			
-			//detector media
-			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
-			const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
-			const isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage')
-			const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
-			const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
-			
-			if (nuy){
+      if (nuy){
 			if (budy.toLowerCase() === `${prefix}self`){
 				public = false
 				client.sendMessage(from, `Sukses`, `Status: SELF`)
@@ -1386,6 +1376,16 @@ function addMetadata(packname, author) {
 		if (!public){
 			if (!mek.key.fromMe) return
 		}
+
+             //kolor
+			colors = ['red','white','black','blue','yellow','green']
+			
+			//detector media
+			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
+			const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
+			const isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage')
+			const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
+			const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
 			
 			//private chat message
 			if (!isGroup && isCmd) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'args :', color(args.length))
@@ -1397,9 +1397,8 @@ function addMetadata(packname, author) {
 			
 			switch(command) {
 			case 'public':
-			    if (!isOwner) return client.sendMessage(from, '「 OWNER BOT ONLY 」',MessageType.text, { quoted: mek2, contextInfo: { forwardingScore: 508, isForwarded: true}, sendEphemeral: true, thumbnail: fs.readFileSync(`./me.jpg`, 'base64')})
-				public = true
-				client.sendMessage(from, 'STATUS : PUBLIC',MessageType.text, { quoted: mek2, contextInfo: { forwardingScore: 508, isForwarded: true}})
+				public = args[0]
+				client.sendMessage(from, `STATUS : ${public}`,MessageType.text, { quoted: mek2, contextInfo: { forwardingScore: 508, isForwarded: true}})
 				break
 				case 'antibadword': 
                 if (!isGroup) return reply(ind.groupo())
